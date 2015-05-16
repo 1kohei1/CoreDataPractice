@@ -30,6 +30,8 @@ class ViewController: UIViewController {
         
         //2
         let fetchRequest = NSFetchRequest(entityName:"Person")
+        let predicate = NSPredicate(format: "name CONTAINS 'search' ")
+        fetchRequest.predicate = predicate
         
         //3
         var error: NSError?

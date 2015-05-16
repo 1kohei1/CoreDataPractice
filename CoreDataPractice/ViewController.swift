@@ -30,8 +30,8 @@ class ViewController: UIViewController {
         
         //2
         let fetchRequest = NSFetchRequest(entityName:"Person")
-        let predicate = NSPredicate(format: "name CONTAINS 'search' ")
-        fetchRequest.predicate = predicate
+//        let predicate = NSPredicate(format: "name CONTAINS 'search' ")
+//        fetchRequest.predicate = predicate
         
         //3
         var error: NSError?
@@ -75,6 +75,29 @@ class ViewController: UIViewController {
         presentViewController(alert,
             animated: true,
             completion: nil)
+    }
+    
+    @IBAction func deletePushed(sender: AnyObject) {
+        //1
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+
+        let fetchRequest = NSFetchRequest(entityName:"Person")
+        let predicate = NSPredicate(format: "name CONTAINS 'delete'")
+        fetchRequest.predicate = predicate
+        
+        var error: NSError?
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
+        
+        for obj in fetchedResults! {
+            managedContext.deleteObject(obj)
+        }
+        
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
+
+        
     }
     
     func saveName(name: String) {

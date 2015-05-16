@@ -2,7 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14C1510" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Habit" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="logs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Log" inverseName="habit" inverseEntity="Log" syncable="YES"/>
+        <relationship name="logs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Log" inverseName="habit" inverseEntity="Log" syncable="YES"/>
     </entity>
     <entity name="Log" syncable="YES">
         <attribute name="day" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -14,8 +14,8 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Person" positionX="-54" positionY="-9" width="128" height="58"/>
-        <element name="Habit" positionX="-198" positionY="342" width="128" height="73"/>
+        <element name="Habit" positionX="-198" positionY="342" width="128" height="75"/>
         <element name="Log" positionX="43" positionY="354" width="128" height="105"/>
+        <element name="Person" positionX="-54" positionY="-9" width="128" height="58"/>
     </elements>
 </model>

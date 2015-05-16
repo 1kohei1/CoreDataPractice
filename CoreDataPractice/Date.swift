@@ -9,11 +9,11 @@
 import Foundation
 
 class Date {
-    var year: Int
-    var month: Int
-    var day: Int
+    var year: Int?
+    var month: Int?
+    var day: Int?
     
-    init(year: Int, month: Int, day: Int) {
+    init(year: Int?, month: Int?, day: Int?) {
         self.year = year
         self.month = month
         self.day = day

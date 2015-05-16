@@ -43,6 +43,7 @@
 		190BECF81B07D71500A8ECDA /* secondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secondViewController.swift; sourceTree = "<group>"; };
 		19864AD71B07DF5D0034AC3E /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		19864AD91B07EF790034AC3E /* CoreDataPractice 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataPractice 2.xcdatamodel"; sourceTree = "<group>"; };
+		19864ADA1B07FD740034AC3E /* CoreDataPractice 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "CoreDataPractice 3.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -439,10 +440,11 @@
 		190BECD71B07BB5C00A8ECDA /* CoreDataPractice.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				19864ADA1B07FD740034AC3E /* CoreDataPractice 3.xcdatamodel */,
 				19864AD91B07EF790034AC3E /* CoreDataPractice 2.xcdatamodel */,
 				190BECD81B07BB5C00A8ECDA /* CoreDataPractice.xcdatamodel */,
 			);
-			currentVersion = 19864AD91B07EF790034AC3E /* CoreDataPractice 2.xcdatamodel */;
+			currentVersion = 19864ADA1B07FD740034AC3E /* CoreDataPractice 3.xcdatamodel */;
 			path = CoreDataPractice.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

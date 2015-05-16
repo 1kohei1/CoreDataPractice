@@ -27,21 +27,21 @@ class ViewController: UIViewController {
         //1
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
-//
-//        //2
-//        let fetchRequest = NSFetchRequest(entityName:"Person")
-////        let predicate = NSPredicate(format: "name CONTAINS 'search' ")
-////        fetchRequest.predicate = predicate
-//        
-//        //3
-//        var error: NSError?
-//        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
-//        
-//        if let results = fetchedResults {
-//            people = results
-//        } else {
-//            println("Could not fetch \(error), \(error!.userInfo)")
-//        }
+
+        //2
+        let fetchRequest = NSFetchRequest(entityName:"Person")
+//        let predicate = NSPredicate(format: "name CONTAINS 'search' ")
+//        fetchRequest.predicate = predicate
+        
+        //3
+        var error: NSError?
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
+        
+        if let results = fetchedResults {
+            people = results
+        } else {
+            println("Could not fetch \(error), \(error!.userInfo)")
+        }
     }
 
     @IBAction func addPushed(sender: AnyObject) {
@@ -97,6 +97,9 @@ class ViewController: UIViewController {
             println("Could not save \(error), \(error?.userInfo)")
         }
 
+        if !managedContext.save(&error) {
+            println("Could not save \(error), \(error?.userInfo)")
+        }
     }
     
     func saveName(name: String) {

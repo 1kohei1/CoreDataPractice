@@ -32,6 +32,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
+        // Save change
+        saveManagedObjectContext()
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -41,7 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        self.saveContext()
+//        self.saveContext()
+        
+        // Save change
+        saveManagedObjectContext()
     }
 
     // MARK: - Core Data stack
@@ -113,6 +119,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
+    
+    func saveManagedObjectContext() {
+        var error: NSError?
+        if let managedContext = self.managedObjectContext {
+            if !managedContext.save(&error) {
+                NSLog("Could not save changes")
+                NSLog("Could not save \(error), \(error?.userInfo)")
+            }
+        }
+        
+    }
 }
 

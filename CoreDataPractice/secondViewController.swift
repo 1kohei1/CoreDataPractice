@@ -27,7 +27,7 @@ class secondViewController: UIViewController {
 //        // Get entity
 //        let habitEntity =  NSEntityDescription.entityForName("Habit", inManagedObjectContext: managedContext)
 //        let logEntity =  NSEntityDescription.entityForName("Log", inManagedObjectContext: managedContext)
-//        
+//
 //        // Add NSManagedObject to Context
 //        for var i = 0; i < 10; i++ {
 //            let habit = NSManagedObject(entity: habitEntity!, insertIntoManagedObjectContext:managedContext)

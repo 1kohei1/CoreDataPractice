@@ -115,35 +115,74 @@ class ViewController: UIViewController {
 //            println("Could not save \(error), \(error?.userInfo)")
 //        }
         
-        var start = NSDate()
-
         /*** Practice 3 ***/
         
+//        // Get context
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let managedContext = appDelegate.managedObjectContext!
+//        
+//        // Create fetch request
+//        let fetchRequest = NSFetchRequest(entityName:"Habit")
+//        // Create predicate
+//        let predicate = NSPredicate(format: "title == 'Title10' ")
+//        fetchRequest.predicate = predicate
+//        
+//        // Get result
+//        var error: NSError?
+//        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
+//        
+//        if let results = fetchedResults {
+//            var habit = results[0]
+//            println(habit.valueForKey("title"))
+//            println(habit.valueForKey("logs")?.valueForKey("year"))
+//            println(habit)
+//            println(habit.valueForKey("logs"))
+//        } else {
+//            println("Could not fetch \(error), \(error!.userInfo)")
+//            return
+//        }
+        
+        var start = NSDate()
+        
+        /*** Practice 4 ***/
         // Get context
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let managedContext = appDelegate.managedObjectContext!
-        
+
         // Create fetch request
         let fetchRequest = NSFetchRequest(entityName:"Habit")
         // Create predicate
         let predicate = NSPredicate(format: "title == 'Title10' ")
         fetchRequest.predicate = predicate
-        
+
         // Get result
         var error: NSError?
         let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
-        
+
+        var habit: NSManagedObject
         if let results = fetchedResults {
-            var habit = results[0]
-            println(habit.valueForKey("title"))
-            println(habit.valueForKey("logs")?.valueForKey("year"))
-            println(habit)
-            println(habit.valueForKey("logs"))
+            habit = results[0]
         } else {
-            println("Could not fetch \(error), \(error!.userInfo)")
+            return
+        }
+        
+        // Create fetch request
+        let fetchRequest2 = NSFetchRequest(entityName:"Log")
+        let predicate2 = NSPredicate(format: " habit == %@ ", habit)
+        fetchRequest2.predicate = predicate2
+
+        // Get result
+        let fetchedResults2 = managedContext.executeFetchRequest(fetchRequest2, error: &error) as? [NSManagedObject]
+        
+        if let results = fetchedResults2 {
+            for log in results {
+                NSLog("year: %d, month: %d, day: %d", (log.valueForKey("year") as? Int)!, (log.valueForKey("month") as? Int)!, (log.valueForKey("day") as? Int)!)
+            }
+        } else {
             return
         }
 
+        
         var end = NSDate()
         
         println(end.timeIntervalSinceDate(start))

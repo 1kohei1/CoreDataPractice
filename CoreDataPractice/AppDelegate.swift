@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var error: NSError? = nil
         var failureReason = "There was an error creating or loading the application's saved data."
         
-        // Custom Edit
+        // Custom Edit; Light weight migration
         var options = [
             NSMigratePersistentStoresAutomaticallyOption: true,
             NSInferMappingModelAutomaticallyOption: true

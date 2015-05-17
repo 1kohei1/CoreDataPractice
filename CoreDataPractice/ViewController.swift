@@ -14,8 +14,140 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var people = [NSManagedObject]()
     
+    var habits = [NSManagedObject]()
+    var habit_logs = [NSManagedObject: [Date]]()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        /*** Practice 1 ***/
+        
+//        // Get context
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let managedContext = appDelegate.managedObjectContext!
+//        
+//        // Make a fetch request
+//        let fetchRequest = NSFetchRequest(entityName:"Habit")
+//        
+//        // Get the result
+//        var error: NSError?
+//        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
+//        
+//        if let result = fetchedResults {
+//            
+//            for var i = 0; i < result.count; i++ {
+//                var habit = result[i]
+//                
+//                if let logs = habit.valueForKey("logs") as? NSSet {
+//                    var dates = [Date]()
+//                    for log in logs {
+//                        var year = log.valueForKey("year") as? Int
+//                        var month = log.valueForKey("month") as? Int
+//                        var day = log.valueForKey("day") as? Int
+//                        
+//                        var date = Date(year: year, month: month, day: day)
+//                        dates.append(date)
+//                    }
+//                    habit_logs[habit] = dates
+//                }
+//            }
+//        }
+        
+        /*** Practice 2 ***/
+
+//        // Get context
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let managedContext = appDelegate.managedObjectContext!
+//        
+//        // Get Habit entity
+//        let entity =  NSEntityDescription.entityForName("Habit", inManagedObjectContext: managedContext)
+//        let habit = NSManagedObject(entity: entity!, insertIntoManagedObjectContext:managedContext)
+//
+//        // Set created habit attributes
+//        habit.setValue("Title10", forKey: "title")
+//
+//        // Save context
+//        var error: NSError?
+//        if managedContext.save(&error) {
+//            println("Succeed to save")
+//        } else {
+//            println("Could not save \(error), \(error?.userInfo)")
+//        }
+  
+//         Get context
+//        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//        let managedContext = appDelegate.managedObjectContext!
+//        
+//        // Create fetch request
+//        let fetchRequest = NSFetchRequest(entityName:"Habit")
+//        // Create predicate
+//        let predicate = NSPredicate(format: "title == 'Title10' ")
+//        fetchRequest.predicate = predicate
+//
+//        // Get result
+//        var error: NSError?
+//        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
+//        
+//        var habit: NSManagedObject
+//        
+//        if let results = fetchedResults {
+//            habit = results[0]
+//        } else {
+//            println("Could not fetch \(error), \(error!.userInfo)")
+//            return
+//        }
+//
+//        // Create log entity
+//        let logEntity =  NSEntityDescription.entityForName("Log", inManagedObjectContext: managedContext)
+//        let log = NSManagedObject(entity: logEntity!, insertIntoManagedObjectContext:managedContext)
+//        log.setValue(12, forKey: "day")
+//        log.setValue(13, forKey: "year")
+//        log.setValue(14, forKey: "month")
+//        
+//        // Set created log to habit
+//        habit.setValue(NSSet(object: log), forKey: "logs")
+//        
+//        // Save context
+//        if managedContext.save(&error) {
+//            println("Succeed to save")
+//        } else {
+//            println("Could not save \(error), \(error?.userInfo)")
+//        }
+        
+        var start = NSDate()
+
+        /*** Practice 3 ***/
+        
+        // Get context
+        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let managedContext = appDelegate.managedObjectContext!
+        
+        // Create fetch request
+        let fetchRequest = NSFetchRequest(entityName:"Habit")
+        // Create predicate
+        let predicate = NSPredicate(format: "title == 'Title10' ")
+        fetchRequest.predicate = predicate
+        
+        // Get result
+        var error: NSError?
+        let fetchedResults = managedContext.executeFetchRequest(fetchRequest, error: &error) as? [NSManagedObject]
+        
+        if let results = fetchedResults {
+            var habit = results[0]
+            println(habit.valueForKey("title"))
+            println(habit.valueForKey("logs")?.valueForKey("year"))
+            println(habit)
+            println(habit.valueForKey("logs"))
+        } else {
+            println("Could not fetch \(error), \(error!.userInfo)")
+            return
+        }
+
+        var end = NSDate()
+        
+        println(end.timeIntervalSinceDate(start))
+
     }
 
     override func didReceiveMemoryWarning() {
